@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+input[type="text"] {
+  border-radius: 10px;
+  border: solid 1px grey;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+
+#first-input,
+#last-input,
+#pass-input,
+#confirm-input {
+  width: 48%;
+}
+
+#short-input-1,
+#short-input-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.item {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+}
+
+#checkbox-item-text {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-item {
+  margin-right: 10px;
+}
+
+.checkbox-input {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+button {
+  border-radius: 10px;
+  color: white;
+  padding: 1rem 4rem;
+  font-size: 1.2rem;
+  border: none;
+}
+
+#registerBtn {
+  background-color: blue;
+}
+
+#signInBtn {
+  background-color: green;
+}
+
+.btn-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.btn-item > button {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 475px) {
+  button {
+    padding: 0.5rem 2rem;
+  }
+
+  #checkbox-item-text,
+  #checkbox-item-input,
+  input::placeholder,
+  button {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  #first-input,
+  #last-input,
+  #pass-input,
+  #confirm-input,
+  #registerBtn,
+  #signInBtn {
+    width: 100%;
+    display: block;
+  }
+
+  #first-input,
+  #pass-input {
+    margin-bottom: 1rem;
+  }
+
+  #short-input-1,
+  #short-input-2,
+  .btn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-item > button {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
