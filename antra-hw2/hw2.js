@@ -2,7 +2,7 @@
 ---------------------------------------------------------------------
 Why are closures useful in JavaScript? Give an example use case.
 - Closures are useful in JavaScript because you can access and manipulate variables that were defined in their outer scope.
-- Use Case: Create private variables like we did in training so that the data is encapsulated and protected so that it can't be accessed or modiefied outside the scope.
+- Use Case: Create private variables like we did in training so that the data is encapsulated and protected so that it can't be accessed or modified outside the scope.
 
 ---------------------------------------------------------------------
 When should you choose to use “let” or “const”
@@ -11,7 +11,7 @@ When should you choose to use “let” or “const”
 
 ---------------------------------------------------------------------
 Give an example of a common mistake related to hoisting and explain how to fix it.
-- A common mistake for hoisting is when using var, only the declaration is hoisted not the assignment of the function, leading to a TypeError.
+- A common mistake for hoisting is when using var and defining it after calling it, only the declaration is hoisted not the assignment of the function, leading to a TypeError.
 - You can fix this by using the function keyword for functions or making sure the function expression is defined before it's called.
 
 ---------------------------------------------------------------------
