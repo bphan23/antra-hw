@@ -52,12 +52,19 @@ input[type="text"] {
   justify-items: flex-start;
 }
 
+label {
+  font-weight: bold;
+}
+
 #checkbox-item-text {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.checkbox-item {
-  margin-right: 1rem;
+.checkbox-text {
+  grid-column: 2 / span 3;
 }
 
 .checkbox-input {
@@ -89,6 +96,13 @@ button {
 
 .btn-item > button {
   margin-right: 10px;
+}
+
+@media screen and (max-width: 670px) {
+  #checkbox-item-input {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 475px) {
