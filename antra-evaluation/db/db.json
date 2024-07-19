@@ -4,11 +4,6 @@
       "id": "1",
       "name": "apple",
       "count": 4
-    },
-    {
-      "id": "2",
-      "name": "peach",
-      "count": 5
     }
   ],
   "inventory": [

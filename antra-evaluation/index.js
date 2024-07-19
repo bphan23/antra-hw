@@ -21,15 +21,14 @@ const API = (() => {
     }).then((res) => res.json());
   };
 
-  // *** BUG ***
-  const updateCart = (id, newAmount) => {
+  const updateCart = (id, name, prevAmount, newAmount) => {
     // define your method to update an item in cart
     return fetch(`${URL}/cart/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: { count: newAmount },
+      body: JSON.stringify({ id, name, count: prevAmount + newAmount }),
     }).then((res) => res.json());
   };
 
@@ -197,33 +196,14 @@ const Controller = ((model, view) => {
   const handleAddToCart = () => {
     view.inventoryListElement.addEventListener("click", (event) => {
       const element = event.target;
-      let elements = element.parentElement.children;
-      let number = elements.item(2).innerHTML; // value element
-      let value = parseInt(number);
-      // console.log(value);
-      let name = elements.item(0).innerHTML;
-      // console.log(name);
-
-      // update --> (id, newAmount)
-      // add --> (inventoryItem)
+      const elements = element.parentElement.children;
+      const number = elements.item(2).innerHTML; // value element
+      const value = parseInt(number, 10); // Ensure the value is parsed as a base-10 integer
+      const name = elements.item(0).innerHTML;
 
       // IF COUNT IS 0 DO NOTHING
-      if (element.className == "listItem__addBtn" && value != 0) {
+      if (element.className === "listItem__addBtn" && value !== 0) {
         const id = element.parentElement.getAttribute("id");
-
-        // look through values in cart and if same id update
-        // otherwise after iteratingt through all objects - we are sure we don't have it
-
-        model.getCart().then((data) => {
-          data.forEach((item) => {
-            // IF ALREADY IN UPDATE
-            if (item.id === id) {
-              model.updateCart(id, newItem).then((data) => {
-                state.cart = [...state, data];
-              });
-            }
-          });
-        });
 
         const newItem = {
           id,
@@ -232,9 +212,34 @@ const Controller = ((model, view) => {
         };
         console.log(newItem);
 
-        // IF ITEM IS NOT IN CART - ADD SPECIFIED AMOUNT
-        model.addToCart(newItem).then((data) => {
-          state.cart = [...state.cart, data];
+        // update --> (id, newAmount)
+        // add --> (inventoryItem)
+
+        model.getCart().then((data) => {
+          let itemFound = false;
+
+          const updatePromises = data.map((item) => {
+            // IF ALREADY IN UPDATE
+            if (item.id === id) {
+              itemFound = true;
+              return model
+                .updateCart(id, item.name, item.count, value)
+                .then((updatedItem) => {
+                  state.cart = state.cart.map((cartItem) =>
+                    cartItem.id === id ? updatedItem : cartItem
+                  );
+                });
+            }
+          });
+
+          Promise.all(updatePromises).then(() => {
+            if (!itemFound) {
+              // IF ITEM IS NOT IN CART - ADD SPECIFIED AMOUNT
+              model.addToCart(newItem).then((addedItem) => {
+                state.cart = [...state.cart, addedItem];
+              });
+            }
+          });
         });
       }
     });
