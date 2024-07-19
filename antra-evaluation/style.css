@@ -1,0 +1,52 @@
+#app {
+  background-color: gray;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  border: black 1px solid;
+  border-radius: 10px;
+}
+
+.inventory-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  background-color: tan;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.listItem__name,
+.listItem__minusBtn,
+.listItem__value,
+.listItem__plusBtn {
+  margin-right: 10px;
+}
+
+.listItem__minusBtn,
+.listItem__plusBtn,
+.listItem__addBtn,
+.cart__deleteBtn {
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.listItem__minusBtn {
+  background-color: rgb(201, 71, 71);
+}
+.listItem__plusBtn {
+  background-color: rgb(69, 150, 69);
+}
+.listItem__addBtn,
+.cart__deleteBtn {
+  background-color: rgb(53, 96, 175);
+}
+
+ul {
+  list-style: none;
+}
