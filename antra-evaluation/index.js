@@ -115,7 +115,7 @@ const View = (() => {
   const renderInventory = (inventory) => {
     let temp = "";
     inventory.forEach((item) => {
-      const listItem = `<li id=${item.id}>
+      const listItem = `<li id=${item.id} class="listItem">
       <span class="listItem__name">${item.content}</span>
       <button class="listItem__minusBtn">-</button>
       <span class="listItem__value">0</span>
@@ -133,9 +133,9 @@ const View = (() => {
   const renderCart = (cart) => {
     let temp = "";
     cart.forEach((item) => {
-      const cartItem = `<li id=${item.id}>
-        <span>${item.name}</span>
-        <span>x ${item.count}</span>
+      const cartItem = `<li id=${item.id} class="listItem">
+        <span class="listItem__name">${item.name}</span>
+        <span class="listItem__value">x ${item.count}</span>
         <button class="cart__deleteBtn">delete</button>
       </li>`;
       temp += cartItem;
